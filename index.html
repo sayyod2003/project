@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mamlakatlar ro`yxati</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div v-if="show_country">
+          <a href="#" @click.prevent="showCountries" class="btn btn-success"
+            >All Countries</a
+          >
+          <div v-for="c in country">
+            <div class="card" style="width: 18rem">
+              <img
+                class="card-img-top"
+                :src="c.flags.png"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <h5 class="card-title">{{c.name.common}}</h5>
+                <p class="card-text">
+                  Capital City: {{ Array.isArray(c.capital) ? c.capital[0] :
+                  c.capital }}
+                </p>
+                <p class="card-text">Population: {{c.population}}</p>
+                <p class="card-text">Flag: {{c.flag }}</p>
+                <p class="card-text">Short name: {{c.cca3 }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <h1>{{title}}</h1>
+          <div class="row">
+            <div
+              class="col-mf-3"
+              v-if="countries.length > 0"
+              v-for="country in countries"
+            >
+              <div class="card" style="width: 18rem">
+                <img
+                  class="card-img-top"
+                  :src="country.flags.png"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">{{country.name.common}}</h5>
+                  <p class="card-text">
+                    Capital City: {{Array.isArray(country.capital) ?
+                    country.capital[0] : country.capital}}
+                  </p>
+                  <p class="card-text">Population: {{country.population}}</p>
+                  <p class="card-text">Continent: {{country.region }}</p>
+                  <a
+                    href="#"
+                    @click.prevent="showCountry(country.altSpellings)"
+                    class="btn btn-primary"
+                    >Show Country</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+      integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./app.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #898181;
+        font-family: Arial, sans-serif;
+      }
+      a {
+        text-decoration: none;
+      }
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        color: #333;
+        padding: 30px 0;
+        margin-top: 0;
+      }
+      .card {
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        margin: 5px 5px 5px 5px;
+      }
+      .card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      .card-body {
+        background-color: #fff;
+        padding: 20px;
+      }
+      .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #333;
+      }
+      .card-text {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        color: #555;
+      }
+      .btn-primary,
+      .btn-success {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      .btn-primary:hover,
+      .btn-success:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+    </style>
+  </body>
+</html>
